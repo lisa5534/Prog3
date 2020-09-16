@@ -1,44 +1,44 @@
 {
     "version": "2.0.0",
+    "type": "shell",
+    "problemMatcher": [],
     "tasks": [
         {
-            "type": "shell",
-            "label": "g++ build",
-            "command": "/usr/bin/g++",
+            "label": "cmake generate",
+            "command": "cmake",
             "args": [
-                "-g",
-                "${workspaceFolder}/*.cpp",
-                "-o",
-                "firstProgram.o"
-            ],
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "-S",
+                "${workspaceFolder}",
+                "-B",
+                "${workspaceFolder}/build"
+            ]
         },
         {
-            "type": "shell",
-            "label": "printenvs",
-            "command": "echo",
+            "label": "cmake build",
+            "command": "cmake",
             "args": [
-                "${workspaceFolder}"
-            ],
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
+                "--build",
+                "build"
+            ]
+        },
+        {
+            "label": "build",
+            "dependsOn": ["cmake generate", "cmake build"],
+            "dependsOrder": "sequence",
             "group": {
                 "kind": "build",
                 "isDefault": true
-            }
+              }
+        },
+        {
+            "label": "clean",
+            "command": "rm -rf ${workspaceFolder}/build"
+        },
+        {
+            "label": "run",
+            "command": "${workspaceFolder}/build/${workspaceRootFolderName}",
+            "dependsOn": ["build"]
         }
     ]
 }
