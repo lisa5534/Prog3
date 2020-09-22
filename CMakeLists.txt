@@ -13,4 +13,4 @@ add_subdirectory(extern/crowcpp)
 
 add_subdirectory(src)
 
-target_link_libraries(Application crow boost::system, boost::thread)
+target_link_libraries(Application crow)
