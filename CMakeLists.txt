@@ -10,7 +10,8 @@ include(CMakePrintHelpers)
 find_package(Boost 1.70 COMPONENTS system thread REQUIRED)
 
 add_subdirectory(extern/crowcpp)
+add_subdirectory(extern/rapidjson)
 
 add_subdirectory(src)
 
-target_link_libraries(Application crow)
+target_link_libraries(Application crow rapidjson)

@@ -16,16 +16,4 @@ int main()
     }
     cout << endl;
     cout << "my c++ version is: " << __cplusplus << endl;
-
-    crow::SimpleApp app;
-
-    CROW_ROUTE(app, "/json")
-    ([]{
-        crow::json::wvalue x;
-        x["message"] = "Hello, World!";
-        return x;
-    });
-
-    app.port(18080).multithreaded().run();
-
 }
