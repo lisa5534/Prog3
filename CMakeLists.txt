@@ -7,17 +7,10 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 include(CMakePrintHelpers)
 
-# find boost
-# add subdir external
+find_package(Boost 1.70 COMPONENTS system thread REQUIRED)
 
-# also link boost here
-# also link external libs here
+add_subdirectory(extern/crowcpp)
+
 add_subdirectory(src)
 
-
-# include(CTest)
-# enable_testing()
-
-#set(CPACK_PROJECT_NAME ${PROJECT_NAME})
-#set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
-#include(CPack)
+target_link_libraries(Application crow boost::system, boost::thread)

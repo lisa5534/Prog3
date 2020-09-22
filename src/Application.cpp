@@ -2,6 +2,8 @@
 #include <vector>
 #include <string>
 
+#include "crow.h"
+
 using namespace std;
 
 int main()
@@ -14,4 +16,13 @@ int main()
     }
     cout << endl;
     cout << "my c++ version is: " << __cplusplus << endl;
+
+    crow::SimpleApp app;
+
+    CROW_ROUTE(app, "/")([](){
+        return "Hello world";
+    });
+
+    app.port(18080).multithreaded().run();
+
 }
