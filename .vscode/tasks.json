@@ -37,7 +37,7 @@
         },
         {
             "label": "run",
-            "command": "${workspaceFolder}/build/${workspaceRootFolderName}",
+            "command": "${workspaceFolder}/build/Application",
             "dependsOn": ["build"]
         }
     ]
