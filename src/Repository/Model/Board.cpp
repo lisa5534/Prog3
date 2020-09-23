@@ -2,13 +2,13 @@
 
 using namespace Prog3::Repository::Model;
 
-Board::Board(std::string name):
-    name(name)
+Board::Board(std::string givenTitle):
+    title(givenTitle)
 { }
 
-std::string Board::getName()
+std::string Board::getTitle()
 {
-    return name;
+    return title;
 }
 
 std::vector<Column> Board::getColumns()
