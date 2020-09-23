@@ -2,14 +2,15 @@
 #include <iostream>
 
 using namespace Prog3::Controller;
+using namespace Prog3::BusinessLogic;
 using namespace crow;
 using namespace std;
 
 
-Endpoint::Endpoint(SimpleApp& givenApp):
-    app(givenApp)
+Endpoint::Endpoint(SimpleApp& givenApp, BoardManager& givenBoardManager):
+    app(givenApp),
+    boardManager(givenBoardManager)
 {
-    cout << "Endpoint created" << endl;
     registerRoutes();
 }
 
@@ -21,8 +22,11 @@ void Endpoint::registerRoutes()
 {
 
     CROW_ROUTE(app, "/api/board")
-    ([](const request& req, response& res)
+    ([this](const request& req, response& res)
     {
+        
+        std::string boardAsJson = boardManager.getBoard();
+        res.write(boardAsJson);
         res.end();
     }
     );
