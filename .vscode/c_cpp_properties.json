@@ -5,11 +5,13 @@
             "includePath": [
                 "${workspaceFolder}/extern/crowcpp",
                 "${workspaceFolder}/extern/rapidjson",
+                "${workspaceFolder}/src",
                 "${workspaceFolder}/**"
             ],
             "browse": {"path": [
                 "${workspaceFolder}/extern/crowcpp",
                 "${workspaceFolder}/extern/rapidjson",
+                "${workspaceFolder}/src",
                 "${workspaceFolder}/**"
                 ]},
             "defines": [],
