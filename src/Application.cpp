@@ -2,13 +2,19 @@
 #include <vector>
 #include <string>
 
+#include "crow.h"
 #include "Controller/Endpoint.hpp"
 
 using namespace std;
 
 int main()
 {
-    cout << "Welcome to Prog3 My C++ version is: " << __cplusplus << endl;
+    crow::SimpleApp crowApplication;
 
-    Prog3::Controller::Endpoint controller;
+    Prog3::Controller::Endpoint controller(crowApplication);
+
+
+    crowApplication.port(18080)
+//        .multithreaded()
+        .run();
 }
