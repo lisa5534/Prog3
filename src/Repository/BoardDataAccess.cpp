@@ -4,7 +4,7 @@
 using namespace Prog3::Repository;
 using namespace std;
 
-Model::Board getBoard()
+Model::Board BoardDataAccess::getBoard()
 {
     vector<string> fakeItems = {"todo", "tableFlip", "zelda"};
 

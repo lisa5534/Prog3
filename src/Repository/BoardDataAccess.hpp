@@ -1,3 +1,5 @@
+#pragma once
+
 #include "DataAccessIf.hpp"
 
 namespace Prog3 { namespace Repository {
