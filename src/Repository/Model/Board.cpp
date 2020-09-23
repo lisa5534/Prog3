@@ -16,7 +16,6 @@ std::vector<Column> Board::getColumns()
     return columns;
 }
 
-// TODO play with references here
 void Board::addColumn(Column givenColumn)
 {
     columns.push_back(givenColumn);
