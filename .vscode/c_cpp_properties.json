@@ -4,15 +4,13 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/extern/crowcpp",
-                "${workspaceFolder}/extern/rapidjson",
-                "${workspaceFolder}/src",
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/extern",
+                "${workspaceFolder}/src"
             ],
             "browse": {"path": [
                 "${workspaceFolder}/extern/crowcpp",
-                "${workspaceFolder}/extern/rapidjson",
+                "${workspaceFolder}/extern",
                 "${workspaceFolder}/src",
-                "${workspaceFolder}/**"
                 ]},
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
