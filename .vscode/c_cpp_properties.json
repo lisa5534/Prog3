@@ -10,7 +10,7 @@
             "browse": {"path": [
                 "${workspaceFolder}/extern/crowcpp",
                 "${workspaceFolder}/extern",
-                "${workspaceFolder}/src",
+                "${workspaceFolder}/src"
                 ]},
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

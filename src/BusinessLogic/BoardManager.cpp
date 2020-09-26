@@ -8,8 +8,8 @@ using namespace Prog3::BusinessLogic;
 using namespace Prog3::Repository;
 using namespace rapidjson;
 
-BoardManager::BoardManager(DataAccessIf & givenDataAccess):
-    dataAccess(givenDataAccess)
+BoardManager::BoardManager(RepositoryIf & givenRepository):
+    repository(givenRepository)
 {
 }
 
@@ -19,7 +19,7 @@ BoardManager::~BoardManager()
 
 std::string BoardManager::getBoard()
 {
-    Model::Board board = dataAccess.getBoard();
+    Model::Board board = repository.getBoard();
 
     Document document;
     document.SetObject();

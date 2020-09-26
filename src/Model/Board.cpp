@@ -1,6 +1,6 @@
 #include "Board.hpp"
 
-using namespace Prog3::Repository::Model;
+using namespace Prog3::Model;
 
 Board::Board(std::string givenTitle):
     title(givenTitle)

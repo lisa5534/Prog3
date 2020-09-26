@@ -4,8 +4,7 @@
 #include <iostream>
 #include <vector>
 
-
-namespace Prog3 { namespace Repository { namespace Model {
+namespace Prog3 { namespace Model {
 
 typedef struct Column 
 {
@@ -31,4 +30,4 @@ private:
     std::vector<Column> columns;
 };
 
-}}}
+}}
