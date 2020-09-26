@@ -8,7 +8,7 @@
 * gdb (debugger)
 
 ## Libraries
-* Boost > 1.5
+* Boost > 1.52
 
 # Configure tools
 * https://code.visualstudio.com/docs/cpp/config-linux
