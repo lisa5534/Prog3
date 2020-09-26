@@ -1,8 +1,8 @@
 #include "Endpoint.hpp"
 #include <iostream>
 
+using namespace Prog3::Api;
 using namespace Prog3::Controller;
-using namespace Prog3::BusinessLogic;
 using namespace crow;
 using namespace std;
 

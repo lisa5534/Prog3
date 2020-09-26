@@ -2,7 +2,7 @@
 
 #include "Repository/Repository.hpp"
 
-namespace Prog3 { namespace BusinessLogic {
+namespace Prog3 { namespace Controller {
 class BoardManager
 {
 private:

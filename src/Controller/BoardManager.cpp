@@ -4,7 +4,7 @@
 #include "rapidjson/stringbuffer.h"
 #include <iostream>
 
-using namespace Prog3::BusinessLogic;
+using namespace Prog3::Controller;
 using namespace Prog3::Repository;
 using namespace rapidjson;
 
