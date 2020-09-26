@@ -19,7 +19,7 @@ int main()
     Prog3::Api::Endpoint endpoint(crowApplication, boardManager);
 
 
-    crowApplication.port(18080)
+    crowApplication.port(8080)
 //        .multithreaded()
         .run();
 }
