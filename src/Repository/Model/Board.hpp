@@ -19,10 +19,6 @@ class Board
 {
 public:
     Board(std::string givenTitle);
-    Board(Board &&) = default;
-    Board(const Board &) = default;
-    Board &operator=(Board &&) = default;
-    Board &operator=(const Board &) = default;
     ~Board() {}
 
     std::string getTitle();

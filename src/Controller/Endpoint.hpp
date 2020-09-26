@@ -9,10 +9,6 @@ class Endpoint
 {
 public:
     Endpoint(crow::SimpleApp& givenApp, Prog3::BusinessLogic::BoardManager& givenBoardManager);
-    Endpoint(Endpoint &&) = default;
-    Endpoint(const Endpoint &) = default;
-    Endpoint &operator=(Endpoint &&) = default;
-    Endpoint &operator=(const Endpoint &) = default;
     ~Endpoint();
 
     void registerRoutes();
