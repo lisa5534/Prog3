@@ -7,6 +7,9 @@
 * gcc (compiler)
 * gdb (debugger)
 
+## Libraries
+* Boost > 1.5
+
 # Configure tools
 * https://code.visualstudio.com/docs/cpp/config-linux
 * https://code.visualstudio.com/docs/cpp/cmake-linux
