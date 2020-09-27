@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Repository/Repository.hpp"
+#include "Repository/RepositoryIf.hpp"
 
 namespace Prog3 { namespace Repository { namespace DatabaseMock {
 class BoardRepository : public Prog3::Repository::RepositoryIf

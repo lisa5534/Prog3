@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Repository/Repository.hpp"
+#include "Repository/RepositoryIf.hpp"
 #include "rapidjson/document.h"
 #include <list>
 
