@@ -1,10 +1,10 @@
-#include "BoardDataAccess.hpp"
+#include "BoardRepository.hpp"
 #include <vector>
 
-using namespace Prog3::Repository::FakeDatabase;
+using namespace Prog3::Repository::DatabaseMock;
 using namespace std;
 
-Prog3::Model::Board BoardDataAccess::getBoard()
+Prog3::Model::Board BoardRepository::getBoard()
 {
     vector<string> fakeItems = {"todo", "tableFlip", "zelda"};
 
