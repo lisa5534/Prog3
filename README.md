@@ -5,7 +5,7 @@
     * c++ snippets
     * cmake tools
 * gcc or clang (compiler) 
-* gdb (debugger)
+* gdb or lldb (debugger)
 
 ## Libraries
 * Boost > 1.52
@@ -36,7 +36,6 @@
 ### GDB
 * source files of stl not found:
     * add a sourceFileMap entry to __launch.json__ files
-* use option __"MIMode":"lldb"__ in __launch.json__ when debugging with Clang
 ### Cmake Tools
 * no compiler kit found:  
     * open Command Palette __Ctrl+Shift+P__  and run the __CMake: Edit User-Local CMake Kits__ command
