@@ -40,6 +40,8 @@
 * no compiler kit found:  
     * open Command Palette __Ctrl+Shift+P__  and run the __CMake: Edit User-Local CMake Kits__ command
     * specify your correct compiler path in __cmake-tools-kits.json__ file 
-### VSCode 
+### Application Exceptions
 * Boost system error: bind: Address already in use:
     * Kill application running on port 8080: __kill $(lsof -t -i:8080)__
+* No suatable servers found:
+    * start MongoDB on localhost:27017 or set flag __useDatabaseMock__ in application.cpp
