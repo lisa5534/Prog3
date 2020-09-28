@@ -1,19 +1,28 @@
 #include <iostream>
-#include <vector>
 #include <string>
 
 #include "crow.h"
 #include "Api/Endpoint.hpp"
 #include "Controller/BoardManager.hpp"
 #include "Repository/DatabaseMock/BoardRepository.hpp"
+#include "Repository/MongoDB/BoardRepository.hpp"
 
-using namespace std;
+const bool useDatabaseMock = false;
+const std::string databaseConnectionString = "mongodb://localhost:27017";
 
 int main()
 {
     crow::SimpleApp crowApplication;
+    Prog3::Repository::RepositoryIf * repository = nullptr;
 
-    Prog3::Repository::RepositoryIf * repository = new Prog3::Repository::DatabaseMock::BoardRepository();
+    if (useDatabaseMock)
+    {
+        repository = new Prog3::Repository::DatabaseMock::BoardRepository();
+    } else
+    {
+        repository = new Prog3::Repository::MongoDB::BoardRepository(databaseConnectionString);
+    }
+
     Prog3::Controller::BoardManager boardManager(*repository);
     Prog3::Api::Endpoint endpoint(crowApplication, boardManager);
 
