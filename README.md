@@ -40,3 +40,6 @@
 * no compiler kit found:  
     * open Command Palette __Ctrl+Shift+P__  and run the __CMake: Edit User-Local CMake Kits__ command
     * specify your correct compiler path in __cmake-tools-kits.json__ file 
+### VSCode 
+* Boost system error: bind: Address already in use:
+    * Kill application running on port 8080: __kill $(lsof -t -i:8080)__
