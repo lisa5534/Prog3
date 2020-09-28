@@ -9,10 +9,11 @@ set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 include(CMakePrintHelpers)
 
 find_package(Boost 1.52 COMPONENTS system thread REQUIRED)
+find_package(mongocxx REQUIRED)
 
 add_subdirectory(extern/crowcpp)
 add_subdirectory(extern/rapidjson)
 
 add_subdirectory(src)
 
-target_link_libraries(Application crow rapidjson)
+target_link_libraries(Application crow rapidjson mongo::mongocxx_shared)
