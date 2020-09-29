@@ -19,13 +19,8 @@ BoardRepository::BoardRepository(std::string connectionString):
     mongoClient(mongocxx::uri(connectionString))
 {
     mongocxx::instance instance{}; //initialize mongoDB driver only once!
-    std::cout << "created MongoDB::BoardRepository with connection string: " << connectionString << std::endl;
-
-
+    
     boardCollection = mongoClient[databaseName][collectionName];
-    // upsertBoard();
-
-    cout << "MongoDB::BoardRepository databaseName: " << databaseName << " collectionName: " << collectionName << endl;
 }
 
 Prog3::Model::Board BoardRepository::getBoard()
