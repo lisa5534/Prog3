@@ -1,5 +1,6 @@
 # Prerequisites
 ## Tools
+* CMake (buildtool)
 * visual studio code (ide)  
     * c/c++ extension
     * c++ snippets
@@ -9,6 +10,11 @@
 
 ## Libraries
 * Boost > 1.52
+* mongocxx (install via package manager of OS or build from source with cmake: http://mongocxx.org/mongocxx-v3/installation/)
+
+## MongoDB
+* run Application with MongoDB on default port: mongodb://localhost:27017 (change in __src/Application.cpp__ if needed)
+* run Application without database by setting __useDatabaseMock__ to true in __src/Application.cpp__
 
 # Configure tools
 * https://code.visualstudio.com/docs/cpp/config-linux
@@ -31,6 +37,16 @@
 ### via tasks.json:
 * Debug: open Command Palette __Ctrl+Shift+P__, type __Debug: Select and start debugging__ and select __\"debug_Prog3\"__
 * Run: open Command Palette __Ctrl+Shift+P__ and run task __run__
+
+# Useful guides
+### API Endpoints
+* https://github.com/ipkn/crow/tree/master/examples
+### JSON library
+* https://rapidjson.org/md_doc_tutorial.html
+### mongocxx driver
+* http://mongocxx.org/mongocxx-v3/tutorial
+* https://github.com/mongodb/mongo-cxx-driver/tree/master/examples
+
 
 # Troubleshooting
 ### GDB
