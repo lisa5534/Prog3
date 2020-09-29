@@ -9,6 +9,7 @@
 
 const bool useDatabaseMock = false;
 const std::string databaseConnectionString = "mongodb://localhost:27017";
+const std::string boardTitle = "Jira Board";
 
 int main()
 {
@@ -22,6 +23,7 @@ int main()
     {
         repository = new Prog3::Repository::MongoDB::BoardRepository(databaseConnectionString);
     }
+    repository->upsertBoard(boardTitle);
 
     Prog3::Controller::BoardManager boardManager(*repository);
     Prog3::Api::Endpoint endpoint(crowApplication, boardManager);

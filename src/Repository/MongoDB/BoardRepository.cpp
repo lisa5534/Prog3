@@ -14,7 +14,6 @@ using namespace std;
 
 const std::string BoardRepository::databaseName = "Prog3";
 const std::string BoardRepository::collectionName = "Board";
-const std::string BoardRepository::boardName = "Jira Board";
 
 BoardRepository::BoardRepository(std::string connectionString):
     mongoClient(mongocxx::uri(connectionString))
@@ -31,47 +30,53 @@ BoardRepository::BoardRepository(std::string connectionString):
 
 Prog3::Model::Board BoardRepository::getBoard()
 {
-    bsoncxx::stdx::optional<bsoncxx::document::value> wasBoardFound = boardCollection.find_one({document{} << "title" << boardName << finalize});
-    if(wasBoardFound) 
+    bsoncxx::stdx::optional<bsoncxx::document::value> wasBoardFound = boardCollection.find_one({document{} << "title" << boardTitle << finalize});
+    if (! wasBoardFound)
     {
-        bsoncxx::document::view bsonBoard = wasBoardFound->view();
-        // std::cout << bsoncxx::to_json(bsonBoard) << "\n";
-
-        string boardTitle = toString(bsonBoard["title"]);
-        Model::Board board(boardTitle);
-
-        if (bsonBoard["columns"].type() == bsoncxx::type::k_array)
-        {
-            vector<Model::Column> columns;
-            for (const bsoncxx::array::element & bsonColumn : bsonBoard["columns"].get_array().value )
-            {
-                if (bsonColumn["items"].type() == bsoncxx::type::k_array)
-                {
-                    vector<string> items;
-                    for (const bsoncxx::array::element & item : bsonColumn["items"].get_array().value)
-                    {
-                        // std::cout << item.get_utf8().value.to_string() << std::endl;
-                        items.push_back(toString(item));
-                    }
-                }
-                Model::Column column = {0};
-                if (bsonColumn["id"].type() == bsoncxx::type::k_double)
-                {
-                    column.id = bsonColumn["id"].get_double().value;
-                    cout << "column id is: " << column.id << endl;
-                }
-            }
-
-        }
-
-        
-        // std::cout << bsoncxx::to_json(bsonBoard["title"].get_value()) << std::endl;
-        // std::cout << bsonBoard["title"].get_utf8().value.to_string() << std::endl;
-
-
+        throw std::runtime_error("no baord in database");
     }
 
-    Model::Board board("implementing ...");
+    bsoncxx::document::view bsonBoard = wasBoardFound->view();
+    // std::cout << bsoncxx::to_json(bsonBoard) << "\n";
 
+    string boardTitle = getString(bsonBoard["title"]);
+    Model::Board board(boardTitle);
+
+    if (isArray(bsonBoard["columns"]))
+    {
+        for (const bsoncxx::array::element & bsonColumn : bsonBoard["columns"].get_array().value )
+        {
+
+            Model::Column column = {0};
+            column.id = getDouble(bsonColumn["id"]);
+            column.name = getString(bsonColumn["name"]);
+            column.position = getDouble(bsonColumn["position"]);
+
+            if (isArray(bsonColumn["items"]))
+            {
+                vector<string> items;
+                for (const bsoncxx::array::element & bsonItems : bsonColumn["items"].get_array().value)
+                {
+                    items.push_back(getString(bsonItems));
+                }
+
+                column.items = items;
+            }
+
+            board.addColumn(column);
+        }
+    }
     return board;
+}
+
+void BoardRepository::upsertBoard(std::string title)
+{
+    boardTitle = title;
+    mongocxx::options::update upsertOption;
+    upsertOption.upsert(true);
+
+    boardCollection.update_one(
+        document{} << "title" << title << finalize,
+        document{} << "$set" << open_document << "title" << title << close_document << finalize,
+        upsertOption);
 }

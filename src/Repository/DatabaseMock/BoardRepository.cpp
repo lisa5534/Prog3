@@ -14,8 +14,14 @@ Prog3::Model::Board BoardRepository::getBoard()
     fakeColumn.position = 0;
     fakeColumn.items = fakeItems;
     
-    Model::Board * board = new Model::Board("FakeDataBase *_* ");
     board->addColumn(fakeColumn);
 
     return *board;
+}
+
+void BoardRepository::upsertBoard(std::string title)
+{
+    std::string boardTitle("Mock - " + title);
+    
+    board = new Model::Board(boardTitle);
 }

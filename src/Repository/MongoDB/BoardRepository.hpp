@@ -10,14 +10,52 @@ class BoardRepository : public Prog3::Repository::RepositoryIf
 private:
     mongocxx::client mongoClient;
     mongocxx::collection boardCollection;
+    std::string boardTitle = "";
 
-    std::string toString(bsoncxx::document::element element)
+    std::string getString(const bsoncxx::document::element& element)
     {
-        return element.get_utf8().value.to_string();
+        if (element.type() == bsoncxx::type::k_utf8)
+        {
+            return element.get_utf8().value.to_string();
+        }
+        else
+        {
+            return "";
+        }
     }
-    std::string toString(bsoncxx::array::element element)
+    std::string getString(const bsoncxx::array::element& element)
     {
-        return element.get_utf8().value.to_string();
+        if (element.type() == bsoncxx::type::k_utf8)
+        {
+            return element.get_utf8().value.to_string();
+        }
+        else
+        {
+            return "";
+        }
+        
+    }
+
+    double getDouble(const bsoncxx::document::element& element)
+    {
+        if (element.type() == bsoncxx::type::k_double)
+        {
+            return element.get_double().value;
+        }
+        else
+        {
+            return 0.0;
+        }
+    }
+
+    bool isArray(const bsoncxx::document::element& element)
+    {
+        bool isArray = false;
+        if (element)
+        {
+            isArray = element.type() == bsoncxx::type::k_array;
+        }
+        return isArray;
     }
 
 public:
@@ -25,10 +63,10 @@ public:
     ~BoardRepository() {};
 
     virtual Prog3::Model::Board getBoard();
+    virtual void upsertBoard(std::string title);
 
     static const std::string databaseName;
     static const std::string collectionName;
-    static const std::string boardName;
 
 };
 
