@@ -9,9 +9,9 @@
             "args": [
                 "-DCMAKE_BUILD_TYPE=Debug",
                 "-S",
-                "${workspaceFolder}",
+                "${workspaceFolder}/kanban-board-service",
                 "-B",
-                "${workspaceFolder}/build"
+                "${workspaceFolder}/kanban-board-service/build"
             ]
         },
         {
@@ -33,11 +33,11 @@
         },
         {
             "label": "clean",
-            "command": "rm -rf ${workspaceFolder}/build"
+            "command": "rm -rf ${workspaceFolder}/kanban-board-service/build"
         },
         {
             "label": "run",
-            "command": "${workspaceFolder}/build/Application",
+            "command": "${workspaceFolder}/kanban-board-service/build/Application",
             "dependsOn": ["build"]
         }
     ]

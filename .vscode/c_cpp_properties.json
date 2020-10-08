@@ -3,14 +3,14 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/extern/crowcpp",
-                "${workspaceFolder}/extern",
-                "${workspaceFolder}/src"
+                "${workspaceFolder}/kanban-board-service/extern/crowcpp",
+                "${workspaceFolder}/kanban-board-service/extern",
+                "${workspaceFolder}/kanban-board-service/src"
             ],
             "browse": {"path": [
-                "${workspaceFolder}/extern/crowcpp",
-                "${workspaceFolder}/extern",
-                "${workspaceFolder}/src"
+                "${workspaceFolder}/kanban-board-service/extern/crowcpp",
+                "${workspaceFolder}/kanban-board-service/extern",
+                "${workspaceFolder}/kanban-board-service/src"
                 ]},
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
