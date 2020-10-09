@@ -1,44 +1,41 @@
 {
-    "version": "2.0.0",
-    "type": "shell",
-    "problemMatcher": [],
-    "tasks": [
-        {
-            "label": "cmake generate",
-            "command": "cmake",
-            "args": [
-                "-DCMAKE_BUILD_TYPE=Debug",
-                "-S",
-                "${workspaceFolder}/kanban-board-service",
-                "-B",
-                "${workspaceFolder}/kanban-board-service/build"
-            ]
-        },
-        {
-            "label": "cmake build",
-            "command": "cmake",
-            "args": [
-                "--build",
-                "build"
-            ]
-        },
-        {
-            "label": "build",
-            "dependsOn": ["cmake generate", "cmake build"],
-            "dependsOrder": "sequence",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-              }
-        },
-        {
-            "label": "clean",
-            "command": "rm -rf ${workspaceFolder}/kanban-board-service/build"
-        },
-        {
-            "label": "run",
-            "command": "${workspaceFolder}/kanban-board-service/build/Application",
-            "dependsOn": ["build"]
-        }
-    ]
+  "version": "2.0.0",
+  "type": "shell",
+  "problemMatcher": [],
+  "tasks": [
+    {
+      "label": "cmake generate",
+      "command": "cmake",
+      "args": [
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-S",
+        "${workspaceFolder}/kanban-board-service",
+        "-B",
+        "${workspaceFolder}/kanban-board-service/build"
+      ]
+    },
+    {
+      "label": "cmake build",
+      "command": "cmake",
+      "args": ["--build", "${workspaceFolder}/kanban-board-service/build"]
+    },
+    {
+      "label": "build",
+      "dependsOn": ["cmake generate", "cmake build"],
+      "dependsOrder": "sequence",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "clean",
+      "command": "rm -rf ${workspaceFolder}/kanban-board-service/build"
+    },
+    {
+      "label": "run",
+      "command": "${workspaceFolder}/kanban-board-service/build/Application",
+      "dependsOn": ["build"]
+    }
+  ]
 }

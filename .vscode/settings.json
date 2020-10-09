@@ -14,5 +14,7 @@
     "PATH": "${env:PATH};${workspaceFolder}\\kanban-board-service\\node_modules\\.bin"
   },
   "git.inputValidationLength": 100,
-  "git.inputValidationSubjectLength": 100
+  "git.inputValidationSubjectLength": 100,
+  "cmake.sourceDirectory": "${workspaceFolder}/kanban-board-service",
+  "cmake.buildDirectory": "${workspaceFolder}/kanban-board-service/build"
 }
