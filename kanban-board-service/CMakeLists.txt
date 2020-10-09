@@ -16,4 +16,4 @@ add_subdirectory(extern/rapidjson)
 
 add_subdirectory(src)
 
-target_link_libraries(Application crow rapidjson mongo::mongocxx_shared)
+target_link_libraries(Service crow rapidjson mongo::mongocxx_shared)

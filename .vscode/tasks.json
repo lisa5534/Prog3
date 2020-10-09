@@ -17,11 +17,17 @@
     {
       "label": "cmake build",
       "command": "cmake",
-      "args": ["--build", "${workspaceFolder}/kanban-board-service/build"]
+      "args": [
+        "--build",
+        "${workspaceFolder}/kanban-board-service/build"
+      ]
     },
     {
       "label": "build",
-      "dependsOn": ["cmake generate", "cmake build"],
+      "dependsOn": [
+        "cmake generate",
+        "cmake build"
+      ],
       "dependsOrder": "sequence",
       "group": {
         "kind": "build",
@@ -34,8 +40,10 @@
     },
     {
       "label": "run",
-      "command": "${workspaceFolder}/kanban-board-service/build/Application",
-      "dependsOn": ["build"]
+      "command": "${workspaceFolder}/kanban-board-service/build/Service",
+      "dependsOn": [
+        "build"
+      ]
     }
   ]
 }
