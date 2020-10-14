@@ -6,10 +6,10 @@ namespace Prog3 { namespace Repository {
 class RepositoryIf
 {
 public:
-    ~RepositoryIf() {}
+    virtual ~RepositoryIf() {}
 
     virtual Prog3::Model::Board getBoard()          =   0;
-    virtual void upsertBoard(std::string title)     =   0;
+    virtual void initialize()                       =   0;
 
 };
 

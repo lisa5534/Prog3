@@ -5,7 +5,7 @@
 #include "Api/Endpoint.hpp"
 #include "Controller/BoardManager.hpp"
 #include "Repository/DatabaseMock/BoardRepository.hpp"
-#include "Repository/MongoDB/BoardRepository.hpp"
+#include "Repository/SQLite/BoardRepository.hpp"
 
 const bool useDatabaseMock = false;
 const std::string databaseConnectionString = "mongodb://localhost:27017";
@@ -22,9 +22,9 @@ int main()
   }
   else
   {
-    repository = new Prog3::Repository::MongoDB::BoardRepository(databaseConnectionString);
+    repository = new Prog3::Repository::SQLite::BoardRepository();
   }
-  repository->upsertBoard(boardTitle);
+  repository->initialize();
 
   Prog3::Controller::BoardManager boardManager(*repository);
   Prog3::Api::Endpoint endpoint(crowApplication, boardManager);

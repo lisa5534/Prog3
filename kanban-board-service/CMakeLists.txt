@@ -9,11 +9,17 @@ set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 include(CMakePrintHelpers)
 
 find_package(Boost 1.52 COMPONENTS system thread REQUIRED)
-find_package(mongocxx REQUIRED)
+find_package(mongocxx QUIET)
+
+if(WIN32)
+  set(CMAKE_PREFIX_PATH C:\\sqlite3)
+endif()
+find_package(SQLite3 REQUIRED)
 
 add_subdirectory(extern/crowcpp)
 add_subdirectory(extern/rapidjson)
 
 add_subdirectory(src)
 
-target_link_libraries(Service crow rapidjson mongo::mongocxx_shared)
+target_include_directories(Service PRIVATE ${SQLite3_INCLUDE_DIRS})
+target_link_libraries(Service crow rapidjson ${SQLite3_LIBRARIES})

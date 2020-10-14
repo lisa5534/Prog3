@@ -13,15 +13,15 @@ Prog3::Model::Board BoardRepository::getBoard()
     fakeColumn.name = "FakeColumn";
     fakeColumn.position = 0;
     fakeColumn.items = fakeItems;
-    
+
     board->addColumn(fakeColumn);
 
     return *board;
 }
 
-void BoardRepository::upsertBoard(std::string title)
+void BoardRepository::initialize()
 {
-    std::string boardTitle("Mock - " + title);
-    
+    std::string boardTitle("Mock - Kanban Board");
+
     board = new Model::Board(boardTitle);
 }

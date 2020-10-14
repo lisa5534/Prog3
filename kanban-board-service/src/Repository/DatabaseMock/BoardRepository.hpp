@@ -13,7 +13,7 @@ public:
     ~BoardRepository() {};
 
     virtual Prog3::Model::Board getBoard();
-    virtual void upsertBoard(std::string title);
+    virtual void initialize();
 
 };
 
