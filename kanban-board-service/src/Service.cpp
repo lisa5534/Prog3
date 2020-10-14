@@ -9,7 +9,7 @@
 
 const bool useDatabaseMock = false;
 const std::string databaseConnectionString = "mongodb://localhost:27017";
-const std::string boardTitle = "Jira Board";
+const std::string boardTitle = "Kanban Board";
 
 int main()
 {
