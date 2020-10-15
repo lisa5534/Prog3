@@ -17,3 +17,4 @@ cmake_print_variables(SOURCE_FILES)
 
 add_executable(Service ${SOURCE_FILES})
 target_include_directories(Service PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_compile_options(Service PRIVATE -Wall -Wextra -Wconversion -Wsign-conversion -Wno-missing-field-initializers -Wno-unused-parameter)
