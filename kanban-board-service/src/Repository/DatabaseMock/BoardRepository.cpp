@@ -4,8 +4,7 @@
 using namespace Prog3::Repository::DatabaseMock;
 using namespace std;
 
-Prog3::Model::Board BoardRepository::getBoard()
-{
+Prog3::Model::Board BoardRepository::getBoard() {
     vector<string> fakeItems = {"todo", "tableFlip", "zelda"};
 
     Model::Column fakeColumn = {0};
@@ -19,8 +18,7 @@ Prog3::Model::Board BoardRepository::getBoard()
     return *board;
 }
 
-void BoardRepository::initialize()
-{
+void BoardRepository::initialize() {
     std::string boardTitle("Mock - Kanban Board");
 
     board = new Model::Board(boardTitle);
