@@ -21,10 +21,9 @@ class Board {
     ~Board() {}
 
     std::string getTitle();
-    void setTitle(std::string);
 
-    std::vector<Column> getColumns();
-    void addColumn(Column givenColumn);
+    std::vector<Column> &getColumns();
+    void addColumn(Column &givenColumn);
 
   private:
     std::string title;

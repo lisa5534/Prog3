@@ -22,6 +22,8 @@ class BoardRepository : public RepositoryIf {
 
     static const std::string boardTitle;
     static const std::string databasePath;
+
+    void createDummyData();
 };
 
 } // namespace SQLite

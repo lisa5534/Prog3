@@ -32,25 +32,40 @@ void BoardRepository::initialize() {
     int result = 0;
     char *errorMessage = nullptr;
 
-    string sqlCreateTableBoard =
-        "CREATE TABLE IF NOT EXISTS board("
-        "id INT PRIMARY KEY NOT NULL,"
-        "title TEXT NOT NULL);";
+    string sqlCreateTableColumn =
+        "create table if not exists column("
+        "id integer primary key autoincrement,"
+        "name text not null,"
+        "position integer not null UNIQUE);";
 
-    result = sqlite3_exec(database, sqlCreateTableBoard.c_str(), NULL, 0, &errorMessage);
+    string sqlCreateTableItem =
+        "create table if not exists item("
+        "id integer primary key autoincrement,"
+        "title text not null,"
+        "date text not null,"
+        "position integer not null,"
+        "column_id integer not null,"
+        "unique (position, column_id),"
+        "foreign key (column_id) references column (id));";
+
+    result = sqlite3_exec(database, sqlCreateTableColumn.c_str(), NULL, 0, &errorMessage);
+    handleSQLError(result, errorMessage);
+    result = sqlite3_exec(database, sqlCreateTableItem.c_str(), NULL, 0, &errorMessage);
     handleSQLError(result, errorMessage);
 
-    string sqlInsertBoardTitle = string("INSERT OR IGNORE INTO board (id, title) VALUES (1, '") + boardTitle + "');";
-
-    result = sqlite3_exec(database, sqlInsertBoardTitle.c_str(), NULL, 0, &errorMessage);
-    handleSQLError(result, errorMessage);
+    // only if needed ;)
+    //createDummyData();
 }
 
 Prog3::Model::Board BoardRepository::getBoard() {
 
-    Board board = Board();
+    Board board = Board(boardTitle);
 
-    string sqlQueryBoard = "SELECT title from board";
+    string sqlQueryBoard =
+        "SELECT column.id, name, column.position, title, date, item.position from column "
+        "join item on item.column_id = column.id "
+        "order by column.position, item.position";
+
     int result = 0;
     char *errorMessage = nullptr;
 
@@ -64,12 +79,28 @@ int BoardRepository::queryBoardCallback(void *data, int numberOfColumns, char **
 
     Board *board = static_cast<Board *>(data);
 
-    int titleColumnIndex = 0;
+    Column column = {0};
 
-    if (strcmp(columnNames[titleColumnIndex], "title") == 0) {
-        board->setTitle(fieldValues[titleColumnIndex] ? fieldValues[titleColumnIndex] : "unknown Board");
+    for (int i = 0; i < numberOfColumns; i++) {
+        cout << columnNames[i] << ": " << fieldValues[i] << endl;
     }
 
+    uint32_t positionOfColumn = static_cast<uint32_t>(atoi(fieldValues[2]));
+    string item = fieldValues[3];
+
+    std::vector<Column> &columns = board->getColumns();
+
+    if (columns.size() < positionOfColumn) {
+        column.id = atoi(fieldValues[0]);
+        column.name = fieldValues[1];
+        column.position = atoi(fieldValues[2]);
+        column.items.push_back(item);
+
+        board->addColumn(column);
+    } else {
+        Column &refToColumn = columns.at(positionOfColumn - 1);
+        refToColumn.items.push_back(item);
+    }
     return 0;
 }
 
@@ -79,4 +110,32 @@ void BoardRepository::handleSQLError(int statementResult, char *errorMessage) {
         cout << "SQL error: " << errorMessage << endl;
         sqlite3_free(errorMessage);
     }
+}
+
+void BoardRepository::createDummyData() {
+
+    cout << "creatingDummyData ..." << endl;
+
+    int result = 0;
+    char *errorMessage;
+    string sqlInsertDummyColumns =
+        "insert into column (name, position)"
+        "VALUES"
+        "(\"prepare\", 1),"
+        "(\"running\", 2),"
+        "(\"finished\", 3);";
+
+    result = sqlite3_exec(database, sqlInsertDummyColumns.c_str(), NULL, 0, &errorMessage);
+    handleSQLError(result, errorMessage);
+
+    string sqlInserDummyItems =
+        "insert into item (title, date, position, column_id)"
+        "VALUES"
+        "(\"in plan\", date('now'), 1, 1),"
+        "(\"some running task\", date('now'), 1, 2),"
+        "(\"finished task 1\", date('now'), 1, 3),"
+        "(\"finished task 2\", date('now'), 2, 3);";
+
+    result = sqlite3_exec(database, sqlInserDummyItems.c_str(), NULL, 0, &errorMessage);
+    handleSQLError(result, errorMessage);
 }
