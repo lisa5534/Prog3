@@ -1,6 +1,6 @@
 {
-	// List of extensions which should be recommended for users of this workspace.
-	"recommendations": [
+  // List of extensions which should be recommended for users of this workspace.
+  "recommendations": [
     "angular.ng-template",
     "christian-kohler.path-intellisense",
     "hars.cppsnippets",
@@ -20,5 +20,5 @@
     "pkief.material-icon-theme",
     "syler.sass-indented",
     "zignd.html-css-class-completion"
-	]
+  ]
 }

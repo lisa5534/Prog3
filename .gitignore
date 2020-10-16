@@ -21,3 +21,9 @@
 # System Files
 .DS_Store
 Thumbs.db
+
+# database
+kanban-board.db
+
+# http
+*.http

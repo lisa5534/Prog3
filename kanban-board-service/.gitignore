@@ -44,6 +44,3 @@ compile_commands.json
 CTestTestfile.cmake
 _deps
 build
-
-# database
-data

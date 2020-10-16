@@ -1,24 +1,53 @@
 {
-    "configurations": [
-        {
-            "name": "Linux",
-            "includePath": [
-                "${workspaceFolder}/kanban-board-service/extern/crowcpp",
-                "${workspaceFolder}/kanban-board-service/extern",
-                "${workspaceFolder}/kanban-board-service/src"
-            ],
-            "browse": {"path": [
-                "${workspaceFolder}/kanban-board-service/extern/crowcpp",
-                "${workspaceFolder}/kanban-board-service/extern",
-                "${workspaceFolder}/kanban-board-service/src"
-                ]},
-            "defines": [],
-            "compilerPath": "/usr/bin/gcc",
-            "cStandard": "gnu18",
-            "cppStandard": "gnu++14",
-            "intelliSenseMode": "gcc-x64",
-            "configurationProvider": "ms-vscode.cmake-tools"
-        }
-    ],
-    "version": 4
+  "configurations": [
+    {
+      "name": "Linux",
+      "includePath": [
+        "${workspaceFolder}/kanban-board-service/extern/crowcpp",
+        "${workspaceFolder}/kanban-board-service/extern",
+        "${workspaceFolder}/kanban-board-service/src"
+      ],
+      "browse": {
+        "path": [
+          "${workspaceFolder}/kanban-board-service/extern/crowcpp",
+          "${workspaceFolder}/kanban-board-service/extern",
+          "${workspaceFolder}/kanban-board-service/src"
+        ]
+      },
+      "configurationProvider": "ms-vscode.cmake-tools"
+    },
+    {
+      "name": "Mac",
+      "includePath": [
+        "${workspaceFolder}/kanban-board-service/extern/crowcpp",
+        "${workspaceFolder}/kanban-board-service/extern",
+        "${workspaceFolder}/kanban-board-service/src"
+      ],
+      "browse": {
+        "path": [
+          "${workspaceFolder}/kanban-board-service/extern/crowcpp",
+          "${workspaceFolder}/kanban-board-service/extern",
+          "${workspaceFolder}/kanban-board-service/src"
+        ]
+      },
+      "configurationProvider": "ms-vscode.cmake-tools"
+    },
+    {
+      "name": "Win32",
+      "includePath": [
+        "${workspaceFolder}/kanban-board-service/extern/crowcpp",
+        "${workspaceFolder}/kanban-board-service/extern",
+        "${workspaceFolder}/kanban-board-service/src"
+      ],
+      "browse": {
+        "path": [
+          "${workspaceFolder}/kanban-board-service/extern/crowcpp",
+          "${workspaceFolder}/kanban-board-service/extern",
+          "${workspaceFolder}/kanban-board-service/src"
+        ]
+      },
+      "configurationProvider": "ms-vscode.cmake-tools"
+    }
+  ],
+  "version": 4
 }

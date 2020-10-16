@@ -8,12 +8,16 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 include(CMakePrintHelpers)
 
-find_package(Boost 1.52 COMPONENTS system thread REQUIRED)
-find_package(mongocxx QUIET)
+INCLUDE_DIRECTORIES(
+  C:/vcpkg/installed/x86-windows/include
+)
+LINK_DIRECTORIES(
+  C:/vcpkg/installed/x86-windows/lib
+)
 
-if(WIN32)
-  set(CMAKE_PREFIX_PATH C:\\sqlite3)
-endif()
+set(Boost_USE_STATIC_LIBS "On")
+find_package( Boost 1.52 COMPONENTS system thread regex REQUIRED )
+
 find_package(SQLite3 REQUIRED)
 
 add_subdirectory(extern/crowcpp)
