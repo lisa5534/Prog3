@@ -6,52 +6,31 @@
 
 ## Backend (kanban-board-service)
 
-### Prerequisites
+### Backend Prerequisites
 
 #### Tools
 
-- CMake (buildtool)
-- gcc or clang (compiler)
-- gdb or lldb (debugger)
+- CMake
+- C++ Compiler
+  - GCC (Linux), Visual Studio C++ Compiler (Windows) or Clang (Mac)
+- C++ Debugger
+  - GDB (Linux) or lldb (Mac)
 
 #### Libraries
 
 - Boost > 1.52
-- mongocxx (install via package manager of OS or build from source with cmake: <http://mongocxx.org/mongocxx-v3/installation/>)
+- SQLite3
 
-#### MongoDB
+### Build the C++ application
 
-- run Application with MongoDB on default port: mongodb://localhost:27017 (change in **src/Application.cpp** if needed)
-- run Application without database by setting **useDatabaseMock** to true in **src/Application.cpp**
-
-#### Configure tools
-
-- <https://code.visualstudio.com/docs/cpp/config-linux>
-- <https://code.visualstudio.com/docs/cpp/cmake-linux>
-
-### Build the application
-
-#### via cmake tools extension
-
-- open Command Palette **Ctrl+Shift+P** and run **CMake:Build**
-- run **CMake:clean** to clean the project
-
-#### via tasks.json
-
-- open Command Palette **Ctrl+Shift+P** and run task **build**
-- run task **clean** to clean the project
+- open Command Palette `Ctrl+Shift+P` and run `CMake: Configure`
+  - `kanban-board-service/build` should be created (contains build system)
+- open Command Palette `Ctrl+Shift+P` and run `CMake: Build`
 
 ### Run and debug the application
 
-#### via cmake tools extension
-
-- Debug: open Command Palette **Ctrl+Shift+P** and run **CMake:Debug**
-- Run: open Command Palette **Ctrl+Shift+P** and run **CMake:Run without Debugging**
-
-#### via tasks.json
-
-- Debug: open Command Palette **Ctrl+Shift+P**, type **Debug: Select and start debugging** and select **\"debug_Prog3\"**
-- Run: open Command Palette **Ctrl+Shift+P** and run task **run**
+- open Command Palette `Ctrl+Shift+P` and run `CMake: Run without Debugging`
+- With Debugger: open Command Palette `Ctrl+Shift+P` and run `CMake: Debug`
 
 ### Useful guides
 
@@ -63,38 +42,31 @@
 
 - <https://rapidjson.org/md_doc_tutorial.html>
 
-#### mongocxx driver
-
-- <http://mongocxx.org/mongocxx-v3/tutorial>
-- <https://github.com/mongodb/mongo-cxx-driver/tree/master/examples>
-
 ### Troubleshooting
 
 #### GDB
 
 - source files of stl not found:
-  - add a sourceFileMap entry to **launch.json** files
+  - add a sourceFileMap entry to `launch.json` files
 
 #### Cmake Tools
 
 - no compiler kit found:
-  - open Command Palette **Ctrl+Shift+P** and run the **CMake: Edit User-Local CMake Kits** command
-  - specify your correct compiler path in **cmake-tools-kits.json** file
+  - open Command Palette `Ctrl+Shift+P` and run the `CMake: Edit User-Local CMake Kits` command
+  - specify your correct compiler path in `cmake-tools-kits.json` file
 
 #### Application Exceptions
 
 - Boost system error: bind: Address already in use:
-- Kill application running on port 8080: **kill \$(lsof -t -i:8080)**
-- No suatable servers found:
-- start MongoDB on localhost:27017 or set flag **useDatabaseMock** in application.cpp
+  - Kill application running on port 8080: `kill \$(lsof -t -i:8080)`
 
 ## Frontend (kanban-board-app)
 
-### Prerequisites
+### Frontend Prerequisites
 
 - NPM (NodeJs) <https://nodejs.org/en/>
 
-### Build the application
+### Build the Angluar application
 
 - Run `npm install` to install dependencies
 - Run `npm run build` to build frontend
