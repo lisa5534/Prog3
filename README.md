@@ -18,7 +18,7 @@
 
 #### Libraries
 
-- Boost > 1.52
+- Boost > 1.55
 - SQLite3
 
 ### Build the C++ application
@@ -41,22 +41,6 @@
 #### JSON library
 
 - <https://rapidjson.org/md_doc_tutorial.html>
-
-#### How to setup tools on Windows machines (using Visual Studio Compiler)
-
-- download and install CMake via installer <https://cmake.org/download/>
-- download and install Visual Studio (Community edition works) <https://visualstudio.microsoft.com/de/downloads/>
-  - make sure to check C++ Build Tools on installer, otherwise you need to download seperatly
-- download and install vcpkg <https://github.com/microsoft/vcpkg>
-  - extract zip and move to `C:\vcpkg` so that executalbe path looks like `C:\vcpkg\vcpkg`
-  - run `.\vcpkg\bootstrap-vcpkg.bat` to install
-  - make sure `.vscode/settings.json` contains right path for `CMAKE_TOOLCHAIN_FILE` (default is `c:/vcpkg/scripts/buildsystems/vcpkg.cmake`)
-- install boost via vcpkg by running `.\vcpkg\vcpkg install boost` (can take a very long time >30m)
-- install SQLite3 via vcpkg by running `.\vcpkg\vcpkg install sqlite3`
-- run VSCode and select `Visual Studio Community 2019 Release - x86` compiler (`amd64` should work too)
-  - VSCode asks you for compiler, if not you can select compiler on bottom toolbar next to `Build` entry
-  - if no compiler shows up click `Scan for kits` first
-- build and run application -> done
 
 ### Troubleshooting
 

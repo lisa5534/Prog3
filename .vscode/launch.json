@@ -46,6 +46,9 @@
         "sourceFileMap": {
           "/build/gcc/src/gcc-build/x86_64-pc-linux-gnu/libstdc++-v3/include/": "/usr/include/c++/10.2.0/"
         }
+      },
+      "windows": {
+        "miDebuggerPath": "C:/msys64/mingw64/bin/gdb.exe"
       }
     }
   ]

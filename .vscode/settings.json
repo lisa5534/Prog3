@@ -18,8 +18,5 @@
   "git.inputValidationSubjectLength": 100,
   "cmake.sourceDirectory": "${workspaceFolder}/kanban-board-service",
   "cmake.buildDirectory": "${workspaceFolder}/kanban-board-service/build",
-  "cmake.configureSettings": {
-    "CMAKE_TOOLCHAIN_FILE": "c:/vcpkg/scripts/buildsystems/vcpkg.cmake"
-  },
   "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: LLVM, IndentWidth: 4, ColumnLimit: 0}"
 }

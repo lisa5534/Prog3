@@ -15,11 +15,32 @@
       ]
     },
     {
+      "label": "cmake generate on windows",
+      "command": "cmake",
+      "args": [
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-S",
+        "${workspaceFolder}\\kanban-board-service",
+        "-B",
+        "${workspaceFolder}\\kanban-board-service\\build",
+        "-G",
+        "'MinGW Makefiles'"
+      ]
+    },
+    {
       "label": "cmake build",
       "command": "cmake",
       "args": [
         "--build",
         "${workspaceFolder}/kanban-board-service/build"
+      ]
+    },
+    {
+      "label": "cmake build on windows",
+      "command": "cmake",
+      "args": [
+        "--build",
+        "${workspaceFolder}\\kanban-board-service\\build"
       ]
     },
     {
@@ -35,8 +56,28 @@
       }
     },
     {
+      "label": "build on windows",
+      "dependsOn": [
+        "cmake generate on windows",
+        "cmake build on windows"
+      ],
+      "dependsOrder": "sequence",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
       "label": "clean",
-      "command": "rm -rf ${workspaceFolder}/kanban-board-service/build"
+      "windows" : {
+        "command" : "rm -r ${workspaceFolder}/kanban-board-service/build"
+      },
+      "linux" : {
+        "command": "rm -rf ${workspaceFolder}/kanban-board-service/build"
+      },
+      "osx" : {
+        "command": "rm -rf ${workspaceFolder}/kanban-board-service/build"
+      }
     },
     {
       "label": "run",
