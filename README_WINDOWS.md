@@ -14,7 +14,7 @@
 
 - starrt msys2.exe and type in msys2 shell:
 
-```
+```bash
 pacman -S --needed base-devel mingw-w64-i686-toolchain mingw-w64-x86_64-toolchain \
                     git subversion mercurial \
                     mingw-w64-i686-cmake mingw-w64-x86_64-cmake
@@ -27,7 +27,7 @@ pacman -S --needed base-devel mingw-w64-i686-toolchain mingw-w64-x86_64-toolchai
 
 - type in msys2 shell:
 
-```
+```bash
    pacman -Sy mingw-w64-i686-boost mingw-w64-x86_64-boost mingw-w64-x86_64-sqlite3 mingw-w64-i686-sqlite3 libsqlite
 ```
 
@@ -35,7 +35,7 @@ pacman -S --needed base-devel mingw-w64-i686-toolchain mingw-w64-x86_64-toolchai
 
 - add the following lines to `.vscode\settings.json`: (cannot be commited due to platform incompatibility)
 
-```
+```json
   "cmake.generator": "MinGW Makefiles",
   "cmake.cmakePath": "C:/msys64/mingw64/bin/cmake.exe",
   "cmake.mingwSearchDirs": [
@@ -51,9 +51,7 @@ pacman -S --needed base-devel mingw-w64-i686-toolchain mingw-w64-x86_64-toolchai
 - run `cmake_Build`
 - run `cmake: Run without debugging`
 
----
-
-## How to setup tools on Windows using Visual Studio Compiler
+## How to setup tools on Windows machines (using Visual Studio Compiler)
 
 - download and install CMake via installer <https://cmake.org/download/>
 - download and install Visual Studio (Community edition works) <https://visualstudio.microsoft.com/de/downloads/>
@@ -61,7 +59,8 @@ pacman -S --needed base-devel mingw-w64-i686-toolchain mingw-w64-x86_64-toolchai
 - download and install vcpkg <https://github.com/microsoft/vcpkg>
   - extract zip and move to `C:\vcpkg` so that executalbe path looks like `C:\vcpkg\vcpkg`
   - run `.\vcpkg\bootstrap-vcpkg.bat` to install
-  - make sure `.vscode/settings.json` contains right path for `CMAKE_TOOLCHAIN_FILE` (default is `c:/vcpkg/scripts/buildsystems/vcpkg.cmake`)
+  - add `"cmake.configureSettings": { "CMAKE_TOOLCHAIN_FILE": "c:/vcpkg/scripts/buildsystems/vcpkg.cmake" }` to `.vscode/settings.json`
+    - make sure path is correct for `CMAKE_TOOLCHAIN_FILE`
 - install boost via vcpkg by running `.\vcpkg\vcpkg install boost` (can take a very long time >30m)
 - install SQLite3 via vcpkg by running `.\vcpkg\vcpkg install sqlite3`
 - run VSCode and select `Visual Studio Community 2019 Release - x86` compiler (`amd64` should work too)
