@@ -24,10 +24,32 @@ void Endpoint::registerRoutes() {
     });
 
     CROW_ROUTE(app, "/api/board/columns/<int>")
-        .methods("GET"_method, "POST"_method, "PUT"_method, "DELETE"_method)([](const request &req, response &res, int id) {
-            cout << "/api/board/columns/" << id << endl;
-            cout << "Method: " << method_name(req.method) << endl;
+        .methods("GET"_method, "POST"_method, "PUT"_method, "DELETE"_method)([this](const request &req, response &res, int id) {
+            switch (req.method) {
+            case HTTPMethod::Get:
+                cout << "case HTTPMethod::Get" << endl;
+                break;
+            case HTTPMethod::Post:
+                cout << "case HTTPMethod::Post" << endl;
+                break;
+            case HTTPMethod::Put:
+                cout << "case HTTPMethod::Put" << endl;
+                break;
+            case HTTPMethod::Delete:
+                cout << "case HTTPMethod::Delete" << endl;
+                break;
+            }
 
+            cout << "Method: " << method_name(req.method) << endl;
+            cout << "/api/board/columns/" << id << endl;
+
+            res.end();
+        });
+
+    CROW_ROUTE(app, "/api/board/badrequest")
+        .methods("GET"_method)([this](const request &req, response &res) {
+            int const badRequest = 400;
+            res.code = badRequest;
             res.end();
         });
 }
