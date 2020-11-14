@@ -63,7 +63,7 @@ Prog3::Model::Board BoardRepository::getBoard() {
 
     string sqlQueryBoard =
         "SELECT column.id, name, column.position, title, date, item.position from column "
-        "join item on item.column_id = column.id "
+        "left join item on item.column_id = column.id "
         "order by column.position, item.position";
 
     int result = 0;
@@ -82,11 +82,12 @@ int BoardRepository::queryBoardCallback(void *data, int numberOfColumns, char **
     Column column = {0};
 
     for (int i = 0; i < numberOfColumns; i++) {
-        cout << columnNames[i] << ": " << fieldValues[i] << endl;
+        if (fieldValues[i]) {
+            cout << columnNames[i] << ": " << fieldValues[i] << endl;
+        }
     }
 
     uint32_t positionOfColumn = static_cast<uint32_t>(atoi(fieldValues[2]));
-    string item = fieldValues[3];
 
     std::vector<Column> &columns = board->getColumns();
 
@@ -94,13 +95,17 @@ int BoardRepository::queryBoardCallback(void *data, int numberOfColumns, char **
         column.id = atoi(fieldValues[0]);
         column.name = fieldValues[1];
         column.position = atoi(fieldValues[2]);
-        column.items.push_back(item);
-
         board->addColumn(column);
-    } else {
-        Column &refToColumn = columns.at(positionOfColumn - 1);
+    }
+
+    Column &refToColumn = columns.at(positionOfColumn - 1);
+    bool hasColumnItem = fieldValues[3] != 0;
+    string item = fieldValues[3] ? fieldValues[3] : "";
+
+    if (hasColumnItem) {
         refToColumn.items.push_back(item);
     }
+
     return 0;
 }
 
@@ -123,7 +128,8 @@ void BoardRepository::createDummyData() {
         "VALUES"
         "(\"prepare\", 1),"
         "(\"running\", 2),"
-        "(\"finished\", 3);";
+        "(\"finished\", 3),"
+        "(\"leftJoinTest\", 4);";
 
     result = sqlite3_exec(database, sqlInsertDummyColumns.c_str(), NULL, 0, &errorMessage);
     handleSQLError(result, errorMessage);
